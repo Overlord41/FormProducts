@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 
 module.exports = {
   HOST: process.env.HOST || "127.0.0.1",
-  PORT: process.env.PORT || 3000,
+  PORT: process.env.PORT || 3001,
   USER: process.env.USER || "root",
   DIALECT: process.env.DIALECT || "mysql",
   PASSWORD: process.env.PASSWORD || "",
