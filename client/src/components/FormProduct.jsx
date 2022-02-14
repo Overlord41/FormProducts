@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./FormProduct.css";
+import axios from "axios";
 
 export const FormProduct = () => {
   const defaultState = {
@@ -20,8 +21,11 @@ export const FormProduct = () => {
 
   const addEtiqueta = () => {
     let nameEtiqueta = data.NombreEtiqueta;
-    setData({ ...data, Etiqueta: [...data.Etiqueta, nameEtiqueta] });
-    document.getElementById("IdEtiqueta").value = "";
+    setData({
+      ...data,
+      Etiqueta: [...data.Etiqueta, nameEtiqueta],
+      NombreEtiqueta: "",
+    });
   };
 
   const dropEtiqueta = (index) => {
@@ -35,14 +39,19 @@ export const FormProduct = () => {
   const sendData = async (e) => {
     e.preventDefault();
     try {
-      axios({
+      await axios({
         method: "post",
-        url: `${import.meta.env.VITE_URL_BASE}/products/add`,
-        data: data,
+        url: `${
+          import.meta.env.VITE_URL_BASE || "http://localhost:3001"
+        }/products/add`,
+        data: {
+          Nombre: data.Nombre,
+          Etiqueta: data.Etiqueta,
+        },
       }).then((resp) => {
         console.log(resp.data);
+        setData(defaultState);
       });
-      setData(defaultState);
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +60,12 @@ export const FormProduct = () => {
   return (
     <form onSubmit={sendData}>
       <label>Nombre: </label>
-      <input type="text" name="Nombre" onChange={changeNombre} />
+      <input
+        type="text"
+        name="Nombre"
+        onChange={changeNombre}
+        value={data.Nombre}
+      />
       <br />
       <br />
       <div className="Cont_Etiquetas">
@@ -60,6 +74,7 @@ export const FormProduct = () => {
           type="text"
           id="IdEtiqueta"
           name="Etiquetas"
+          value={data.NombreEtiqueta}
           onChange={changeEtiqueta}
         />
         <input
