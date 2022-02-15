@@ -29,7 +29,7 @@
 <p>PORT=3001</p>
 <p>USER=root</p>
 <p>PASSWORD=</p>
-<p>DATABASE=formproducts</p>
+<p>DATABASE=form_products</p>
 <p>DIALECT=mysql</p>
 
 </br>
