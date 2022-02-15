@@ -21,7 +21,7 @@
 </ul>
 </br>
 <p>Para correr la aplicación se tiene que: </p></br>
-<p>1. Crear una base de datos en MySQL con el nombre: <FONT COLOR="#1F92ED"><b>formproducts</b></FONT>
+<p>1. Crear una base de datos en MySQL con el nombre: <FONT COLOR="#1F92ED"><b>form_products</b></FONT>
 <p>2. Crear un archivo <FONT COLOR="#FAB844"><b>.env</b></FONT> dentro de la carpeta <FONT COLOR="#47CEF6"><b>api</b></FONT> y pega lo siguiente (cambiando las credenciales referente a tu PC):</p></br>
 
 <p>NODE_ENV=development</p>
