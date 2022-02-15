@@ -22,6 +22,7 @@ export const Products = () => {
 
   return (
     <div className="backgroundApp">
+      <div id="title_List">Lista de Productos</div>
       <div className="contain_Products">
         {Productos.length > 0 ? (
           Productos.map((el, index) => (

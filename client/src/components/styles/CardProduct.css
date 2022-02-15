@@ -1,27 +1,43 @@
 .CardProducto {
-  width: 150px;
+  width: 210px;
   height: auto;
-  background-color: rgb(95, 194, 213);
+  background-color: rgba(255, 255, 255, 0.739);
   display: flex;
   justify-content: center;
   border-radius: 7px;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   flex-direction: column;
   align-items: center;
   margin: 5px;
+  border-bottom: 2px solid rgba(114, 114, 116, 0.739);
+  border-left: 2px solid rgba(114, 114, 116, 0.739);
+  transition: background 1s;
+  font-size: 1.5rem;
+}
+
+.CardProducto:hover {
+  background-color: rgba(148, 142, 142, 0.739);
 }
 
 .CardProducto div img {
   padding-top: 10px;
-  height: 100px;
-  width: 100px;
-  padding-bottom: 7px;
+  width: 200px;
 }
 
 .btnEliminar {
+  font-size: 1rem;
+  margin: 5px;
   border: 0px none;
-  background-color: red;
+  background-color: rgb(212, 39, 39);
   padding: 5px;
+  border-radius: 3px;
+  transition: background 0.7s;
+}
+
+.btnEliminar:hover {
+  margin: 5px;
+  color: #fff;
+  background-color: rgb(238, 87, 87);
 }
 
 .btnEliminar:hover {
@@ -29,10 +45,34 @@
 }
 
 .container_img {
-  /* background-color: rgb(110, 110, 231); */
   margin-top: 7px;
   width: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.container_delete {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btnDetails {
+  padding: 5px 15px 5px 15px;
+  margin-top: 5px;
+  border-radius: 5px;
+  background-color: rgb(66, 202, 48);
+  transition: background 1s;
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.btnDetails:hover {
+  cursor: pointer;
+  color: #121212;
+  border: 2px solid rgb(66, 202, 48);
+  padding: 3px 13px 3px 13px;
+  background-color: rgb(250, 255, 249);
 }
