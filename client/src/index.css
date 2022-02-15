@@ -9,6 +9,7 @@ nav a {
   padding: 10px;
   opacity: 1;
   color: #8a8989;
+  transition: background 0.5s;
 }
 
 nav a:hover {

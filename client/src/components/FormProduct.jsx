@@ -35,19 +35,21 @@ export const FormProduct = () => {
   const sendData = async (e) => {
     e.preventDefault();
     try {
-      await axios({
-        method: "post",
-        url: `${
-          import.meta.env.VITE_URL_BASE || "http://localhost:3001"
-        }/products/add`,
-        data: {
-          Nombre: NameProducto,
-          Etiqueta: AllEtiquetas,
-        },
-      }).then((resp) => {
-        console.log(resp.data);
-        dispatch(RESTORE_FORM_PRODUCT());
-      });
+      if (NameProducto !== "") {
+        await axios({
+          method: "post",
+          url: `${
+            import.meta.env.VITE_URL_BASE || "http://localhost:3001"
+          }/products/add`,
+          data: {
+            Nombre: NameProducto,
+            Etiqueta: AllEtiquetas,
+          },
+        }).then((resp) => {
+          console.log(resp.data);
+          dispatch(RESTORE_FORM_PRODUCT());
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -91,7 +93,12 @@ export const FormProduct = () => {
               </div>
             )}
           </div>
-          <input type="submit" id="btnSubmit" value="Guardar" />
+          <input
+            type="submit"
+            id="btnSubmit"
+            value={NameProducto == "" ? "Deshabilitado" : "Guardar"}
+            disabled={NameProducto == "" ? true : false}
+          />
         </form>
       </div>
     </div>
