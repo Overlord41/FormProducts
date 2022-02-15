@@ -3,6 +3,7 @@ import "./styles/CardProduct.css";
 import axios from "axios";
 import { GET_ALL_PRODUCTS } from "../redux/reducers/productsReducer";
 import { useSelector, useDispatch } from "react-redux";
+import swal from "sweetalert";
 
 export const CardProduct = ({ props, index }) => {
   const allProducts = useSelector((state) => state.product.Productos);
@@ -10,16 +11,35 @@ export const CardProduct = ({ props, index }) => {
 
   const dispatch = useDispatch();
 
-  const delete_product = async (id, index) => {
-    const resProduct = await axios.delete(
-      `${
-        import.meta.env.VITE_URL_BASE || "http://localhost:3001"
-      }/products/delete/${id}`
-    );
-    if (resProduct.data === "Product delete succefully") {
-      const newAllProducts = [...allProducts];
-      newAllProducts.splice(index, 1);
-      dispatch(GET_ALL_PRODUCTS(newAllProducts));
+  const delete_product = (id, index) => {
+    try {
+      swal({
+        title: "Estás seguro?",
+        text: "Se eliminará este producto",
+        icon: "error",
+        buttons: true,
+        dangerMode: true,
+      }).then(async (willDelete) => {
+        if (willDelete) {
+          swal("Hecho! El producto ha sido eliminado!", {
+            icon: "success",
+          });
+          const resProduct = await axios.delete(
+            `${
+              import.meta.env.VITE_URL_BASE || "http://localhost:3001"
+            }/products/delete/${id}`
+          );
+          if (resProduct.data === "Product delete succefully") {
+            const newAllProducts = [...allProducts];
+            newAllProducts.splice(index, 1);
+            dispatch(GET_ALL_PRODUCTS(newAllProducts));
+          }
+        } else {
+          swal("El producto está a salvo!");
+        }
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 
