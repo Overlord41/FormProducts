@@ -46,7 +46,7 @@ VITE_URL_BASE=http://localhost:3001
 </code>
 </br>
 </br>
-<p>4. Entrar en la carpeta <FONT COLOR="#47CEF6"><b>api</b></FONT> por la terminal e  instalar las dependencias con el comando: <FONT COLOR="#7DEC3D"><b>npm install</b></FONT> </br>Una vez instaladas las dependencias levantar el servidor con el comando: <FONT COLOR="#7DEC3D"><b>npm start</b></FONT></p>
+<p style="color:#FF0000">4. Entrar en la carpeta <FONT COLOR="#47CEF6"><b>api</b></FONT> por la terminal e  instalar las dependencias con el comando: <FONT COLOR="#7DEC3D"><b>npm install</b></FONT> </br>Una vez instaladas las dependencias levantar el servidor con el comando: <FONT COLOR="#7DEC3D"><b>npm start</b></FONT></p>
 <p>5. Entrar en la carpeta <FONT COLOR="#47CEF6"><b>client</b></FONT> por la terminal e  instalar las dependencias con el comando: <FONT COLOR="#7DEC3D"><b>npm install</b></FONT> </br>Una vez instaladas las dependencias levantar el cliente con el comando: <FONT COLOR="#7DEC3D"><b>npm run dev</b></FONT></p>
 
-<p>6. La aplicación se habre dandole CTL + Click en el link que sale en el terminal o entrando por el navegador a la dirección <FONT COLOR="#3386F0"><a href="http://localhost:3000/"><b>http://localhost:3000/</b></a></FONT></p>
+<p>6. La aplicación se habre dandole CTL + Click en el link que sale en el terminal o entrando por el navegador a la dirección <FONT COLOR="#3386F0"><a href="http://localhost:3000/" target="_blank"><b>http://localhost:3000/</b></a></FONT></p>
