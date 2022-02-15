@@ -9,6 +9,7 @@ import {
   RESTORE_FORM_PRODUCT,
 } from "../redux/reducers/productsReducer";
 import { ContEtiquetas } from "./ContEtiquetas";
+import swal from "sweetalert";
 
 export const FormProduct = () => {
   const NameProducto = useSelector((state) => state.product.Nombre);
@@ -46,7 +47,13 @@ export const FormProduct = () => {
             Etiqueta: AllEtiquetas,
           },
         }).then((resp) => {
-          console.log(resp.data);
+          if (resp.data === "Product created successfully") {
+            swal("Buen Trabajo!", "El producto se ha creado", "success");
+          } else if (resp.data === "The product is already exist") {
+            swal("OH NO!", "El producto ya existe", "error");
+          } else {
+            swal("404 no encontrado!", "", "warning");
+          }
           dispatch(RESTORE_FORM_PRODUCT());
         });
       }
