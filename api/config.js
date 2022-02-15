@@ -1,5 +1,5 @@
 //validar si está en producción
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV || "development" !== "production") {
   require("dotenv").config();
 }
 

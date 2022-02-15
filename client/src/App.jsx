@@ -1,17 +1,20 @@
 import "./App.css";
 import { FormProduct } from "./components/FormProduct";
+import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
+import { Products } from "./components/Products";
 
 function App() {
   return (
-    <>
-      <div id="backgroundApp">
-        <div className="containerForm">
-          <p>Producto</p>
-          <br />
-          <FormProduct />
-        </div>
-      </div>
-    </>
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Productos</Link>
+        <Link to="/agregar">Agregar Producto</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Products />} />
+        <Route path="/agregar" element={<FormProduct />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

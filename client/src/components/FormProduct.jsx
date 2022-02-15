@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./FormProduct.css";
+import "./styles/FormProduct.css";
 import axios from "axios";
 
 export const FormProduct = () => {
@@ -21,11 +21,13 @@ export const FormProduct = () => {
 
   const addEtiqueta = () => {
     let nameEtiqueta = data.NombreEtiqueta;
-    setData({
-      ...data,
-      Etiqueta: [...data.Etiqueta, nameEtiqueta],
-      NombreEtiqueta: "",
-    });
+    if (nameEtiqueta !== "") {
+      setData({
+        ...data,
+        Etiqueta: [...data.Etiqueta, nameEtiqueta],
+        NombreEtiqueta: "",
+      });
+    }
   };
 
   const dropEtiqueta = (index) => {
@@ -58,49 +60,55 @@ export const FormProduct = () => {
   };
 
   return (
-    <form onSubmit={sendData}>
-      <label>Nombre: </label>
-      <input
-        type="text"
-        name="Nombre"
-        onChange={changeNombre}
-        value={data.Nombre}
-      />
-      <br />
-      <br />
-      <div className="Cont_Etiquetas">
-        <label>Etiquetas: </label>
-        <input
-          type="text"
-          id="IdEtiqueta"
-          name="Etiquetas"
-          value={data.NombreEtiqueta}
-          onChange={changeEtiqueta}
-        />
-        <input
-          id="Id_agregar"
-          type="button"
-          value="Agregar"
-          onClick={addEtiqueta}
-        />
+    <div id="backgroundApp">
+      <div className="containerForm">
+        <p>Producto</p>
         <br />
-        <br />
-        {data.Etiqueta.length > 0 && (
-          <div>
-            {data.Etiqueta.map((el, index) => (
-              <p key={index}>
-                {el}
-                <input
-                  type="button"
-                  value="X"
-                  onClick={() => dropEtiqueta(index)}
-                />
-              </p>
-            ))}
+        <form onSubmit={sendData}>
+          <label>Nombre: </label>
+          <input
+            type="text"
+            name="Nombre"
+            onChange={changeNombre}
+            value={data.Nombre}
+          />
+          <br />
+          <br />
+          <div className="Cont_Etiquetas">
+            <label>Etiquetas: </label>
+            <input
+              type="text"
+              id="IdEtiqueta"
+              name="Etiquetas"
+              value={data.NombreEtiqueta}
+              onChange={changeEtiqueta}
+            />
+            <input
+              id="Id_agregar"
+              type="button"
+              value="Agregar"
+              onClick={addEtiqueta}
+            />
+            <br />
+            <br />
+            {data.Etiqueta.length > 0 && (
+              <div className="DivEtiquetas">
+                {data.Etiqueta.map((el, index) => (
+                  <p key={index}>
+                    {el}
+                    <input
+                      type="button"
+                      value="X"
+                      onClick={() => dropEtiqueta(index)}
+                    />
+                  </p>
+                ))}
+              </div>
+            )}
           </div>
-        )}
+          <input type="submit" id="btnSubmit" value="Guardar" />
+        </form>
       </div>
-      <input type="submit" id="btnSubmit" value="Guardar" />
-    </form>
+    </div>
   );
 };
