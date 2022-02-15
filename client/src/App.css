@@ -1,23 +1,21 @@
-#backgroundApp {
+nav {
   display: flex;
-  width: 100%;
-  height: 100vh;
   align-items: center;
   justify-content: center;
-  /* background-color: #121212; */
-  background-color: rgb(65, 63, 63);
 }
 
-.containerForm {
-  border-radius: 5px;
-  border-bottom: 2px solid #383838;
-  border-left: 2px solid #383838;
-  padding: 15px;
-  background-color: #2a2a2a;
+nav a {
+  text-decoration: none;
+  padding: 10px;
+  opacity: 1;
   color: #8a8989;
 }
 
-.containerForm p {
-  font: 1.5rem "handwriting", sans-serif;
-  text-align: center;
+nav a:hover {
+  background-color: #121212;
+  color: #fff;
+}
+
+nav a:nth-child(2) {
+  border-left: 2px solid #121212;
 }
