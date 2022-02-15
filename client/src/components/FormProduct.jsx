@@ -6,9 +6,9 @@ import {
   SET_NAME_PRODUCT,
   SET_NAME_ETIQUETA,
   ADD_ETIQUETAS,
-  REMOVE_ETIQUETA,
   RESTORE_FORM_PRODUCT,
 } from "../redux/reducers/productsReducer";
+import { ContEtiquetas } from "./ContEtiquetas";
 
 export const FormProduct = () => {
   const NameProducto = useSelector((state) => state.product.Nombre);
@@ -30,12 +30,6 @@ export const FormProduct = () => {
       dispatch(ADD_ETIQUETAS(NameEtiqueta));
     }
     dispatch(SET_NAME_ETIQUETA(""));
-  };
-
-  const dropEtiqueta = (index) => {
-    const newAllEtiquetas = [...AllEtiquetas];
-    newAllEtiquetas.splice(index, 1);
-    dispatch(REMOVE_ETIQUETA(newAllEtiquetas));
   };
 
   const sendData = async (e) => {
@@ -61,13 +55,13 @@ export const FormProduct = () => {
 
   return (
     <div id="backgroundApp">
+      <h2>Producto</h2>
       <div className="containerForm">
-        <p>Producto</p>
-        <br />
         <form onSubmit={sendData}>
           <label>Nombre: </label>
           <input
             type="text"
+            id="Id_inpNombre"
             name="Nombre"
             onChange={change_name}
             value={NameProducto}
@@ -93,16 +87,7 @@ export const FormProduct = () => {
             <br />
             {AllEtiquetas.length > 0 && (
               <div className="DivEtiquetas">
-                {AllEtiquetas.map((el, index) => (
-                  <p key={index}>
-                    {el}
-                    <input
-                      type="button"
-                      value="X"
-                      onClick={() => dropEtiqueta(index)}
-                    />
-                  </p>
-                ))}
+                <ContEtiquetas />
               </div>
             )}
           </div>

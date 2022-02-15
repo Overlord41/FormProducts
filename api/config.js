@@ -9,5 +9,5 @@ module.exports = {
   USER: process.env.USER || "root",
   DIALECT: process.env.DIALECT || "mysql",
   PASSWORD: process.env.PASSWORD || "",
-  DATABASE: process.env.DATABASE || "formproducts",
+  DATABASE: process.env.DATABASE || "form_products",
 };
