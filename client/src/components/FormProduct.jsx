@@ -1,41 +1,41 @@
-import { useState } from "react";
+import React from "react";
 import "./styles/FormProduct.css";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  SET_NAME_PRODUCT,
+  SET_NAME_ETIQUETA,
+  ADD_ETIQUETAS,
+  REMOVE_ETIQUETA,
+  RESTORE_FORM_PRODUCT,
+} from "../redux/reducers/productsReducer";
 
 export const FormProduct = () => {
-  const defaultState = {
-    Nombre: "",
-    NombreEtiqueta: "",
-    Etiqueta: [],
+  const NameProducto = useSelector((state) => state.product.Nombre);
+  const NameEtiqueta = useSelector((state) => state.product.NombreEtiqueta);
+  const AllEtiquetas = useSelector((state) => state.product.Etiqueta);
+
+  const dispatch = useDispatch();
+
+  const change_name = (e) => {
+    dispatch(SET_NAME_PRODUCT(e.target.value));
   };
 
-  const [data, setData] = useState(defaultState);
-
-  const changeNombre = (e) => {
-    setData({ ...data, Nombre: e.target.value });
+  const change_name_etiqueta = (e) => {
+    dispatch(SET_NAME_ETIQUETA(e.target.value));
   };
 
-  const changeEtiqueta = (e) => {
-    setData({ ...data, NombreEtiqueta: e.target.value });
-  };
-
-  const addEtiqueta = () => {
-    let nameEtiqueta = data.NombreEtiqueta;
-    if (nameEtiqueta !== "") {
-      setData({
-        ...data,
-        Etiqueta: [...data.Etiqueta, nameEtiqueta],
-        NombreEtiqueta: "",
-      });
+  const addEtiquetas = () => {
+    if (NameEtiqueta !== "") {
+      dispatch(ADD_ETIQUETAS(NameEtiqueta));
     }
+    dispatch(SET_NAME_ETIQUETA(""));
   };
 
   const dropEtiqueta = (index) => {
-    data.Etiqueta.splice(index, 1);
-    setData({
-      ...data,
-      Etiqueta: data.Etiqueta,
-    });
+    const newAllEtiquetas = [...AllEtiquetas];
+    newAllEtiquetas.splice(index, 1);
+    dispatch(REMOVE_ETIQUETA(newAllEtiquetas));
   };
 
   const sendData = async (e) => {
@@ -47,12 +47,12 @@ export const FormProduct = () => {
           import.meta.env.VITE_URL_BASE || "http://localhost:3001"
         }/products/add`,
         data: {
-          Nombre: data.Nombre,
-          Etiqueta: data.Etiqueta,
+          Nombre: NameProducto,
+          Etiqueta: AllEtiquetas,
         },
       }).then((resp) => {
         console.log(resp.data);
-        setData(defaultState);
+        dispatch(RESTORE_FORM_PRODUCT());
       });
     } catch (error) {
       console.log(error);
@@ -69,8 +69,8 @@ export const FormProduct = () => {
           <input
             type="text"
             name="Nombre"
-            onChange={changeNombre}
-            value={data.Nombre}
+            onChange={change_name}
+            value={NameProducto}
           />
           <br />
           <br />
@@ -80,20 +80,20 @@ export const FormProduct = () => {
               type="text"
               id="IdEtiqueta"
               name="Etiquetas"
-              value={data.NombreEtiqueta}
-              onChange={changeEtiqueta}
+              value={NameEtiqueta}
+              onChange={change_name_etiqueta}
             />
             <input
               id="Id_agregar"
               type="button"
               value="Agregar"
-              onClick={addEtiqueta}
+              onClick={addEtiquetas}
             />
             <br />
             <br />
-            {data.Etiqueta.length > 0 && (
+            {AllEtiquetas.length > 0 && (
               <div className="DivEtiquetas">
-                {data.Etiqueta.map((el, index) => (
+                {AllEtiquetas.map((el, index) => (
                   <p key={index}>
                     {el}
                     <input

@@ -19,7 +19,13 @@
 }
 
 .btnEliminar {
-  padding: 2px;
+  border: 0px none;
+  background-color: red;
+  padding: 5px;
+}
+
+.btnEliminar:hover {
+  cursor: pointer;
 }
 
 .container_img {
