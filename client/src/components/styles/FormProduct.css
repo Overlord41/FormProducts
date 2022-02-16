@@ -90,11 +90,11 @@
 }
 
 .DivEtiquetas {
-  background-color: rgba(65, 53, 233, 0.739);
+  background-color: rgba(139, 138, 143, 0.739);
   width: 100%;
   padding-top: 3px;
   padding-bottom: 3px;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 70%;
 }
 
